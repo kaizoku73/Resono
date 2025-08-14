@@ -31,11 +31,8 @@ def encode(audio, payload, key):
 
     if np.all(audio == 0):
         raise ValueError("Input audio file appears to be silent or corrupted!!")
-
-    if "~" in payload:
-        raise ValueError("This character is not allowed!!")
     
-    payload = payload.ljust(100, '~').encode('utf-8')
+    payload = payload.ljust(100).encode('utf-8')
     if len(payload) > 100:
         raise ValueError("The limit exceeds 100 characters")
     
@@ -68,7 +65,7 @@ def encode(audio, payload, key):
             audio_channel = right_channel
             org_right = left_channel
             print("Using right channel to embed!")
-        print("Processing with stereo audio...")
+        
     else:
         raise NotImplementedError("Only mono or stereo channels are allowed!!")
 
@@ -79,7 +76,7 @@ def encode(audio, payload, key):
     if total_bits > capacity:
         raise ValueError(f"Audio too short! Need {total_bits} bits, capacity is {capacity}")
     
-    print(f"Embedding {len(payload)} characters in audio")
+    print(f"Embedding message in audio...")
     print(f"Audio capacity: {capacity} bits, using {total_bits} bits")
     
     required_samples = blockNumber * blockLength
@@ -101,6 +98,7 @@ def encode(audio, payload, key):
     magic = random.Random(seed)
     magic.shuffle(candidates)
 
+    print("Modifying phases...")
     bit_idx = 0
 
     for block_idx in range(blockNumber):

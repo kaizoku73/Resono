@@ -12,16 +12,20 @@ def decode(audio, key):
         mono = True
         audio_channel = audio
         audio_samples = len(audio)
+        print("Detected mono audio. Processing...")
     elif audio.ndim == 2:
         mono = False
         audio_samples = len(audio)
         left_channel = audio[:,0].copy()
         right_channel = audio[:,1].copy()
+        print("Detected stereo audio. Selecting channel...")
 
         if np.sum(np.abs(left_channel)) >= np.sum(np.abs(right_channel)):
             audio_channel = left_channel
+            print("Using left channel to extract!")
         else:
             audio_channel = right_channel
+            print("Using right channel to extract!")
 
     else:
         raise NotImplementedError("Only mono or stereo channels are allowed!!")
@@ -54,6 +58,8 @@ def decode(audio, key):
     candidates = list(range(1, blockMid))
     magic = random.Random(to_seed(key))
     magic.shuffle(candidates)
+
+    print("Extracting message from audio...")
 
     extracted_bits = []
     bit_idx = 0
@@ -88,7 +94,7 @@ def decode(audio, key):
         raise ValueError("Crc mismatch - data corrupted")
         
     text = decryption(epayload, key)
-    recover = text.rstrip(b'~').decode("utf-8")
+    recover = text.rstrip().decode("utf-8")
     print("Message extracted successfully!!")
     print(f"Extracted message : {recover}")
     return recover   

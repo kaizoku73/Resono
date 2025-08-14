@@ -58,7 +58,7 @@ python cli.py extract --stego encoded.wav --key "your_secret_password"
 ## 🔬 How It Works
 
 ### 1. **Message Preparation**
-- Input text is padded to 100 characters using `~` delimiter
+- Input text is padded to 100 characters using white spaces
 - Message is encrypted using AES-256 in EAX mode
 - Length prefix and CRC32 checksum are added for integrity
 
@@ -76,6 +76,9 @@ python cli.py extract --stego encoded.wav --key "your_secret_password"
 - Reverse FFT analysis extracts phase information
 - Same pseudorandom sequence recovers embedded bits
 - Decryption and integrity verification reveal the original message
+
+## What is Phase coding and how does it work?
+For a detailed explanation of Phase coding steganography and how it works, check out this article: https://kaizoku.gitbook.io/steganography/phase-coding-in-audio
 
 ## 📊 Technical Specifications
 
