@@ -1,6 +1,6 @@
-# ShadowPhase 🎵🔒
+# Resono 🎵🔒
 
-A sophisticated audio steganography tool that uses phase coding techniques to hide encrypted text messages within audio files. ShadowPhase combines cryptographic security with advanced signal processing to provide a robust solution for covert communication.
+A sophisticated audio steganography tool that uses phase coding techniques to hide encrypted text messages within audio files. Resono combines cryptographic security with advanced signal processing to provide a robust solution for covert communication.
 
 ## 🌟 Features
 
@@ -24,13 +24,13 @@ pip install numpy scipy pycryptodome
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/kaizoku73/ShadowPhase.git
-cd ShadowPhase
+git clone https://github.com/kaizoku73/Resono.git
+cd Resono
 ```
 
 ## 🚀 Usage
 
-ShadowPhase provides a simple command-line interface for both embedding and extracting hidden messages.
+Resono provides a simple command-line interface for both embedding and extracting hidden messages.
 
 ### Embedding a Message
 
@@ -142,7 +142,7 @@ If you encounter any issues or have questions, please open an issue on GitHub.
 
 ---
 
-**ShadowPhase** - Where secrets hide in plain sound 🎵
+**Resono** - Where secrets hide in plain sound 🎵
 ---
 
 **Made by Kaizoku**
