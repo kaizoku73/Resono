@@ -21,6 +21,15 @@ A sophisticated audio steganography tool that uses phase coding techniques to hi
 ```bash
 pip install numpy scipy pycryptodome
 ```
+### One-Line Installation
+
+```bash
+# System-wide (with sudo)
+curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/install.sh | sudo bash
+
+# User installation (no sudo)
+curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/install.sh | bash
+```
 
 ### Clone the Repository
 ```bash
@@ -130,7 +139,8 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 
 ## 📜 License
 
-This project is open source, feel free to use and modify it. Just don't forget to credit me if you share it!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## ⚖️ Disclaimer
 
