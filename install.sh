@@ -67,7 +67,7 @@ else
     # User installation
     INSTALL_DIR="$HOME/.local/bin"
     RESONO_DIR="$HOME/.local/share/resono"
-    PIP_CMD="python3 -m pip install --user"
+    PIP_CMD="python3 -m pip install"
     INSTALL_TYPE="user"
     print_status "Installing for current user"
 fi
