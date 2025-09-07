@@ -30,6 +30,16 @@ curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/install.sh | s
 # User installation (no sudo)
 curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/install.sh | bash
 ```
+### Uninstallation
+
+```bash
+# To uninstall Resono (no sudo):
+curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/uninstall.sh | bash
+
+# To uninstall Resono (With sudo):
+curl -sSL https://raw.githubusercontent.com/kaizoku73/Resono/main/uninstall.sh | sudo bash
+
+```
 
 ### Clone the Repository
 ```bash
