@@ -50,7 +50,7 @@ fi
 # Confirmation
 echo ""
 echo -e "${YELLOW}This will remove Resono from your system. Continue? (y/N)${NC}"
-read -r response
+read -r response </dev/tty
 if [[ ! "$response" =~ ^[Yy]$ ]]; then
     echo "Uninstallation cancelled."
     exit 0
