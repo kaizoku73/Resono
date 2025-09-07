@@ -57,17 +57,13 @@ print_status "pip found"
 
 # Determine installation directory
 if [[ $EUID -eq 0 ]]; then
-    # Running as root - system-wide install
     INSTALL_DIR="/usr/local/bin"
     RESONO_DIR="/usr/local/share/resono"
-    PIP_CMD="python3 -m pip install"
     INSTALL_TYPE="system-wide"
-    print_status "Installing system-wide (requires root privileges)"
+    print_status "Installing system-wide"
 else
-    # User installation
     INSTALL_DIR="$HOME/.local/bin"
     RESONO_DIR="$HOME/.local/share/resono"
-    PIP_CMD="python3 -m pip install"
     INSTALL_TYPE="user"
     print_status "Installing for current user"
 fi
@@ -77,45 +73,56 @@ echo "Creating directories..."
 mkdir -p "$INSTALL_DIR"
 mkdir -p "$RESONO_DIR"
 
-# Try to install from PyPI first (when published)
-echo "Installing Resono..."
-if $PIP_CMD resono &> /dev/null; then
-    print_status "Resono installed from PyPI"
-else
-    print_warning "PyPI installation failed, installing from GitHub..."
-    
-    # Download and install from GitHub
-    TEMP_DIR=$(mktemp -d)
-    cd "$TEMP_DIR"
-    
-    if ! curl -fsSL -o resono.tar.gz https://github.com/kaizoku73/Resono/archive/refs/heads/main.tar.gz; then
-        print_error "Failed to download Resono from GitHub"
-        exit 1
-    fi
-    
-    tar -xzf resono.tar.gz
-    cd Resono-main
-    
-    print_status "Downloaded and extracted Resono"
-    
-    # Install from source
-    if ! $PIP_CMD . ; then
-        print_error "Failed to install Resono from source"
-        exit 1
-    fi
-    
-    print_status "Resono installed from GitHub source"
+# Download Resono from GitHub
+echo "Downloading Resono from GitHub..."
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
+
+if ! curl -fsSL -o resono.tar.gz https://github.com/kaizoku73/Resono/archive/refs/heads/main.tar.gz; then
+    print_error "Failed to download Resono from GitHub"
+    exit 1
 fi
+
+tar -xzf resono.tar.gz
+cd Resono-main
+
+print_status "Downloaded and extracted Resono"
+
+# Copy files to installation directory
+echo "Installing Resono files..."
+cp -r * "$RESONO_DIR/"
+print_status "Files copied to $RESONO_DIR"
+
+# Install Python dependencies
+echo "Installing Python dependencies..."
+if [[ -f "$RESONO_DIR/requirements.txt" ]]; then
+    if [[ $INSTALL_TYPE == "user" ]]; then
+        python3 -m pip install -r "$RESONO_DIR/requirements.txt"
+    else
+        python3 -m pip install -r "$RESONO_DIR/requirements.txt"
+    fi
+    print_status "Dependencies installed"
+else
+    print_warning "No requirements.txt found, skipping dependencies"
+fi
+
+# Executable wrapper script
+echo "Creating resono command..."
+cat > "$INSTALL_DIR/resono" << EOF
+#!/bin/bash
+# Resono wrapper script
+cd "$RESONO_DIR"
+exec python3 cli.py "\$@"
+EOF
+
+chmod +x "$INSTALL_DIR/resono"
+print_status "Resono command created"
 
 # Verify installation
 echo "Verifying installation..."
 
 if command -v resono &> /dev/null; then
     print_status "Resono command is available!"
-    
-    # Try to get version
-    VERSION_OUTPUT=$(resono --version 2>/dev/null || resono --help 2>/dev/null | head -1 || echo "Version unknown")
-    print_status "Installation verified: $VERSION_OUTPUT"
 else
     print_error "Installation failed - resono command not found"
     
@@ -125,9 +132,6 @@ else
         echo "export PATH=\"\$HOME/.local/bin:\$PATH\""
         echo ""
         echo "Then run: source ~/.bashrc"
-        echo ""
-        echo "Or for this session only:"
-        echo "export PATH=\"\$HOME/.local/bin:\$PATH\""
     fi
     exit 1
 fi
@@ -169,5 +173,3 @@ echo "   resono extract --stego encoded.wav --key mypassword"
 echo ""
 echo -e "${BLUE}Help:${NC}"
 echo "   resono --help"
-echo "   resono embed --help"
-echo "   resono extract --help"
