@@ -131,18 +131,6 @@ For a detailed explanation of Phase coding steganography and how it works, check
 - Audio files may be subject to compression or conversion attacks
 - Consider additional obfuscation techniques for highly sensitive data
 
-## 📝 Example
-
-```bash
-# Embed a secret message
-python cli.py embed --in "Meet me at midnight" --cover song.wav --key "MySecretKey123"
-# Output: Successfully embedded the payload in encoded.wav file
-
-# Extract the message
-python cli.py extract --stego encoded.wav --key "MySecretKey123"
-# Output: Meet me at midnight
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
