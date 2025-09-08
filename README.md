@@ -54,7 +54,7 @@ Resono provides a simple command-line interface for both embedding and extractin
 ### Embedding a Message
 
 ```bash
-python cli.py embed --in "Your secret message here" --cover input_audio.wav --key "your_secret_password"
+resono embed --in "Your secret message here" --cover input_audio.wav --key "your_secret_password"
 ```
 
 **Parameters:**
@@ -67,7 +67,7 @@ python cli.py embed --in "Your secret message here" --cover input_audio.wav --ke
 ### Extracting a Message
 
 ```bash
-python cli.py extract --stego encoded.wav --key "your_secret_password"
+resono extract --stego encoded.wav --key "your_secret_password"
 ```
 
 **Parameters:**
