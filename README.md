@@ -12,7 +12,7 @@ A sophisticated audio steganography tool that uses phase coding techniques to hi
 - **Flexible Capacity**: Automatically calculates embedding capacity based on audio length
 - **Robust Error Handling**: Comprehensive validation and error reporting
 
-## 🔧 Installation
+## 🔧 Quick Start
 
 ### Prerequisites
 - Python 3.6+
@@ -21,6 +21,13 @@ A sophisticated audio steganography tool that uses phase coding techniques to hi
 ```bash
 pip install numpy scipy pycryptodome
 ```
+
+### Installation
+
+```bash
+pip install resono
+```
+
 ### One-Line Installation
 
 ```bash
