@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resono"
+version = "1.0.0"
+description = "Audio steganography tool using phase coding"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "kaizoku73", email = "ultimate0134@gmail.com"}
+]
+maintainers = [
+    {name = "kaizoku73", email = "ultimate0134@gmail.com"}
+]
+keywords = ["steganography", "audio", "phase-coding", "cryptography", "security", "wav", "phase-manipulation"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Multimedia :: Sound/Audio",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "pycryptodome>=3.15.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/kaizoku73/Resono"
+Repository = "https://github.com/kaizoku73/Resono"
+"Bug Reports" = "https://github.com/kaizoku73/Resono/issues"
+Documentation = "https://kaizoku.gitbook.io/steganography/phase-coding-in-audio"
+
+[project.scripts]
+resono = "resono.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["resono*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+resono = ["*.py"]

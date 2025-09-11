@@ -1,3 +1,24 @@
+# Build / packaging artifacts
+dist/
+build/
+*.egg-info/
+pip-wheel-metadata/
+*.whl
+*.tar.gz
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
 stegonv/
-__pycache__
-env
+envc/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store⏎ 

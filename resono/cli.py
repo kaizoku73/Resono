@@ -2,7 +2,7 @@ from phase_embed import encode
 from phase_extract import decode
 import argparse
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='Audio steganography tool on phase coding method')
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
 
@@ -33,3 +33,6 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"Error: {e}")
         exit(1)
+
+if __name__ == '__main__':
+    main()
