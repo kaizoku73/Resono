@@ -1,5 +1,5 @@
 import numpy as np
-from aes import *
+from resono.aes import *
 from scipy.io import wavfile
 import random
 import struct

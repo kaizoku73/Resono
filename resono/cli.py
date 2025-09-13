@@ -1,5 +1,5 @@
-from phase_embed import encode
-from phase_extract import decode
+from resono.phase_embed import encode
+from resono.phase_extract import decode
 import argparse
 
 def main():

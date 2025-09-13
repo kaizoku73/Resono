@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.io import wavfile
 import random
-from aes import *
+from resono.aes import *
 import binascii
 import struct
 
